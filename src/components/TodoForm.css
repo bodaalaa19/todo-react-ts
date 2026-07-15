@@ -1,7 +1,13 @@
 .todo-form {
   display: flex;
+  flex-direction: column;
   gap: 12px;
   margin-bottom: 30px;
+}
+
+.todo-form-row {
+  display: flex;
+  gap: 12px;
 }
 
 .todo-input {
@@ -27,6 +33,40 @@
 
 .todo-input:focus {
   border-color: var(--button);
+}
+
+.description-input {
+  width: 100%;
+  min-height: 96px;
+  padding: 12px 14px;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid #b8d2da;
+  border-radius: 8px;
+  font: inherit;
+  line-height: 1.45;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.description-input:focus {
+  border-color: var(--button);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--button) 20%, transparent);
+}
+
+.description-field {
+  display: grid;
+  gap: 7px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.description-field em {
+  color: gray;
+  font-style: normal;
+  font-weight: 400;
 }
 
 .date-input {
@@ -69,4 +109,19 @@
 
 .add-btn:hover {
   opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+  .todo-form-row {
+    flex-wrap: wrap;
+  }
+
+  .todo-input {
+    min-width: 100%;
+  }
+
+  .date-input,
+  .add-btn {
+    flex: 1;
+  }
 }

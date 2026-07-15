@@ -11,6 +11,7 @@
   border-radius: 8px;
 
   transition: background 0.3s ease;
+  cursor: pointer;
 }
 
 .todo-left {
@@ -19,7 +20,12 @@
   gap: 14px;
 }
 
-.todo-left input {
+.todo-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.todo-left input[type="checkbox"] {
   width: 18px;
   height: 18px;
   cursor: pointer;
@@ -33,7 +39,10 @@
   transition: color 0.3s ease;
 }
 
-.delete-btn {
+.delete-btn,
+.edit-btn,
+.save-btn,
+.cancel-btn {
   width: 48px;
   height: 48px;
 
@@ -53,6 +62,37 @@
 
 .delete-btn:hover {
   opacity: 0.9;
+}
+
+.edit-btn {
+  background: #4b8fb5;
+}
+
+.save-btn,
+.cancel-btn {
+  width: auto;
+  padding: 0 12px;
+}
+
+.save-btn {
+  background: #3b8b5b;
+}
+
+.cancel-btn {
+  background: #777;
+}
+
+.edit-input,
+.edit-date-input,
+.edit-description-input {
+  padding: 8px;
+  border: 1px solid #b8d2da;
+  border-radius: 6px;
+}
+
+.edit-description-input {
+  min-height: 52px;
+  resize: vertical;
 }
 
 .completed {

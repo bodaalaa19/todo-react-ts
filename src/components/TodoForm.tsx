@@ -2,16 +2,18 @@ import React from 'react'
 import "./TodoForm.css";
 import { useState } from 'react';
 interface TodoFormProps {
-  onAddTodo: (text: string,date:string) => void;
+  onAddTodo: (text: string, description: string, date: string) => void;
 }
 function TodoForm({onAddTodo}:TodoFormProps) {
     const [whatTyping,setTyping]=useState('')
+const [description, setDescription] = useState("");
 const [date, setDate] = useState("");
 const handleSubmit = (e: React.FormEvent) => {
   e.preventDefault();
   if (!whatTyping.trim()) return;
-    onAddTodo(whatTyping,date);
+    onAddTodo(whatTyping, description, date);
 setTyping("");
+setDescription("");
 setDate("");
   // Later:
   // Add the todo
@@ -24,6 +26,7 @@ setDate("");
    onSubmit={handleSubmit}
    className='todo-form'>
 
+<div className="todo-form-row">
 <input
 className='todo-input'
 type='text'
@@ -41,6 +44,17 @@ value={whatTyping}
 >
 Add
 </button>
+</div>
+
+<label className="description-field">
+  <span>Description <em>(optional)</em></span>
+  <textarea
+    className="description-input"
+    placeholder="Add details, notes, or anything you need to remember…"
+    onChange={(e) => setDescription(e.target.value)}
+    value={description}
+  />
+</label>
 
    </form >
    

@@ -3,5 +3,6 @@ export interface Todo {
   text: string;
   isCompleted:boolean
     date: string;
+    description: string;
 
 }
