@@ -1,0 +1,55 @@
+.todo-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.todo-input {
+  flex: 1;
+  height: 52px;
+  padding: 0 18px;
+
+  border: 2px solid #2f6cff;
+  border-radius: 8px;
+
+  font-size: 18px;
+  outline: none;
+}
+
+.todo-input:focus {
+  border-color: #2459d8;
+}
+
+.add-btn {
+  width: 100px;
+  height: 52px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #2f6cff;
+  color: white;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #2459d8;
+}
+.date-input {
+  height: 52px;
+  padding: 0 12px;
+
+  border: 2px solid #2f6cff;
+  border-radius: 8px;
+
+  font-size: 16px;
+  outline: none;
+}
+
+.date-input:focus {
+  border-color: #2459d8;
+}
