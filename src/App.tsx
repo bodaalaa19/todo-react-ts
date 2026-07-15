@@ -47,7 +47,14 @@ const onToggleCompleted = (id: string) => {
     )
   );
 };
-const [isDark, setIsDark] = useState(false);
+const [isDark, setIsDark] = useState<boolean>(() => {
+  const storedTheme = localStorage.getItem("isDark");
+  return storedTheme ? JSON.parse(storedTheme) : false;
+});
+
+useEffect(() => {
+  localStorage.setItem("isDark", JSON.stringify(isDark));
+}, [isDark]);
 
 
   return (
