@@ -9,15 +9,44 @@
   height: 52px;
   padding: 0 18px;
 
-  border: 2px solid #2f6cff;
+  background: var(--card);
+  color: var(--text);
+
+  border: 2px solid var(--button);
   border-radius: 8px;
 
   font-size: 18px;
   outline: none;
+
+  transition: 0.3s;
+}
+
+.todo-input::placeholder {
+  color: gray;
 }
 
 .todo-input:focus {
-  border-color: #2459d8;
+  border-color: var(--button);
+}
+
+.date-input {
+  height: 52px;
+  padding: 0 12px;
+
+  background: var(--card);
+  color: var(--text);
+
+  border: 2px solid var(--button);
+  border-radius: 8px;
+
+  font-size: 16px;
+  outline: none;
+
+  transition: 0.3s;
+}
+
+.date-input:focus {
+  border-color: var(--button);
 }
 
 .add-btn {
@@ -27,29 +56,17 @@
   border: none;
   border-radius: 8px;
 
-  background: #2f6cff;
+  background: var(--button);
   color: white;
 
   font-size: 18px;
   font-weight: 600;
 
   cursor: pointer;
+
+  transition: 0.3s;
 }
 
 .add-btn:hover {
-  background: #2459d8;
-}
-.date-input {
-  height: 52px;
-  padding: 0 12px;
-
-  border: 2px solid #2f6cff;
-  border-radius: 8px;
-
-  font-size: 16px;
-  outline: none;
-}
-
-.date-input:focus {
-  border-color: #2459d8;
+  opacity: 0.9;
 }

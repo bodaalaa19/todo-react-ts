@@ -6,21 +6,50 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: "Poppins", sans-serif;
-  background: #f5f5f5;
+/* ---------- Light Theme ---------- */
+.light {
+  --background: #f5f5f5;
+  --item: #d6edf4;
+  --sidebar-item: #eef4ff;
+  --sidebar-item-hover: #dce8ff;
+  --text: #222222;
+  --button: #2f6cff;
 }
 
-.app{
-    display:flex;
-    justify-content:center;
-    padding-top:40px;
+.dark {
+  --background: #1e1e1e;
+  --item: #3a3a3a;
+  --sidebar-item: #3a3f4d;
+  --sidebar-item-hover: #454b5c;
+  --text: #ffffff;
+  --button: #4b7cff;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+
+  background: var(--background);
+  color: var(--text);
+
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .todo-container {
   width: 600px;
-  max-width: 720px; /* smaller than before */
+  max-width: 720px;
   padding: 20px;
+
+  background: var(--background);
+  border-radius: 12px;
+
+  transition: background 0.3s ease;
 }
 
 .todo-container h1 {
@@ -28,5 +57,30 @@ body {
   font-size: 38px;
   font-weight: 700;
   margin-bottom: 20px;
-  color: #222;
+
+  color: var(--text);
+}
+
+.theme-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+
+  padding: 10px 18px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: var(--button);
+  color: white;
+
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+
+  transition: 0.2s;
+}
+
+.theme-btn:hover {
+  opacity: 0.9;
 }

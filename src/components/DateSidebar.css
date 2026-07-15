@@ -6,17 +6,19 @@
 
   width: 220px;
 
-  background: white;
+  background: var(--background);
+  color: var(--text);
   border-radius: 12px;
   padding: 20px;
 
   box-shadow: 0 4px 12px rgba(0,0,0,.1);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .date-sidebar h3 {
   text-align: center;
   margin-bottom: 20px;
-  color: #2f6cff;
+  color: var(--button);
 }
 
 .date-item {
@@ -27,7 +29,8 @@
   padding: 10px 12px;
   margin-bottom: 10px;
 
-  background: #eef4ff;
+  background: var(--sidebar-item);
+  color: var(--text);
   border-radius: 8px;
 
   cursor: pointer;
@@ -35,8 +38,9 @@
 }
 
 .date-item:hover {
-  background: #dce8ff;
+  background: var(--sidebar-item-hover);
 }
+
 .date-right {
     display: flex;
     align-items: center;

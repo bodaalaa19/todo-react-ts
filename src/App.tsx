@@ -6,6 +6,7 @@ import TodoList from './components/TodoList'
 import { useState,useEffect } from 'react'
 import type { Todo } from './types/todo'
 import DateSidebar from './components/DateSidebar'
+import "./App.css";
 function App() {
   const [todos, setTodos] = useState<Todo[]>(() => {
   const storedTodos = localStorage.getItem("todos");
@@ -46,12 +47,22 @@ const onToggleCompleted = (id: string) => {
     )
   );
 };
+const [isDark, setIsDark] = useState(false);
+
+
   return (
-    <div className="app">
-        <DateSidebar todos={todos} 
+<div className={`app ${isDark ? "dark" : "light"}`}>        <DateSidebar todos={todos} 
   onSelectDate={setSelectedDate}
         />
+<button
+className='add-btn'
+onClick={
+  () => {
+        console.log(isDark);
 
+    setIsDark(!isDark)}}>
+  {isDark ? "☀️ Light Mode" : "🌙 Dark Mode"}
+</button>
   <div className="todo-container">
     <h1>Todo List</h1>
 

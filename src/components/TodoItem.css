@@ -6,10 +6,11 @@
   padding: 10px 14px;
   margin-bottom: 14px;
 
-  background: #d6edf4;
-
+  background: var(--item);
   border: 1px solid #b8d2da;
   border-radius: 8px;
+
+  transition: background 0.3s ease;
 }
 
 .todo-left {
@@ -27,7 +28,9 @@
 .todo-text {
   margin: 0;
   font-size: 17px;
-  color: #333;
+  color: var(--text);
+
+  transition: color 0.3s ease;
 }
 
 .delete-btn {
@@ -37,7 +40,7 @@
   border: none;
   border-radius: 8px;
 
-  background: #2d36d3;
+  background: var(--button);
   color: white;
 
   display: flex;
@@ -49,9 +52,11 @@
 }
 
 .delete-btn:hover {
-  background: #1f28b8;
+  opacity: 0.9;
 }
+
 .completed {
   text-decoration: line-through;
-  color: #777;
+  color: gray;
+  opacity: 0.7;
 }
