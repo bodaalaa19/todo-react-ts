@@ -7,6 +7,10 @@ interface DateSidebarProps {
 }
 
 function formatDate(dateString: string) {
+  if (!dateString) {
+    return "📅 No date";
+  }
+
   const date = new Date(dateString);
 
   const today = new Date();
