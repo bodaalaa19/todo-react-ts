@@ -33,20 +33,20 @@ function formatDate(dateString: string) {
 }
 
 function DateSidebar({ todos, onSelectDate }: DateSidebarProps) {
-  const groupedDates = todos.reduce((acc, todo) => {
-    acc[todo.date] = (acc[todo.date] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
+  const groupedDates = todos.reduce(
+    (acc, todo) => {
+      acc[todo.date] = (acc[todo.date] || 0) + 1;
+      return acc;
+    },
+    {} as Record<string, number>,
+  );
 
   return (
     <div className="date-sidebar">
       <h3>Dates</h3>
 
       {/* Show all todos */}
-      <div
-        className="date-item"
-        onClick={() => onSelectDate(null)}
-      >
+      <div className="date-item" onClick={() => onSelectDate(null)}>
         <span>📋 All Tasks</span>
       </div>
 

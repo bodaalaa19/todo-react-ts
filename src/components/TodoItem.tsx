@@ -6,12 +6,23 @@ import "./TodoItem.css";
 interface TodoItemProps {
   todo: Todo;
   onDeleteTodo: (id: string) => void;
-  onEditTodo: (id: string, text: string, description: string, date: string) => void;
+  onEditTodo: (
+    id: string,
+    text: string,
+    description: string,
+    date: string,
+  ) => void;
   onToggleCompleted: (id: string) => void;
   onViewTodo: (id: string) => void;
 }
 
-function TodoItem({ todo, onDeleteTodo, onEditTodo, onToggleCompleted, onViewTodo }: TodoItemProps) {
+function TodoItem({
+  todo,
+  onDeleteTodo,
+  onEditTodo,
+  onToggleCompleted,
+  onViewTodo,
+}: TodoItemProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState(todo.text);
   const [description, setDescription] = useState(todo.description ?? "");
@@ -43,7 +54,9 @@ function TodoItem({ todo, onDeleteTodo, onEditTodo, onToggleCompleted, onViewTod
             onChange={() => onToggleCompleted(todo.id)}
             onClick={(event) => event.stopPropagation()}
           />
-          <p className={`todo-text ${todo.isCompleted ? "completed" : ""}`}>{todo.text}</p>
+          <p className={`todo-text ${todo.isCompleted ? "completed" : ""}`}>
+            {todo.text}
+          </p>
           <p className="todo-date">{todo.date || "No date"}</p>
         </div>
 
@@ -60,23 +73,48 @@ function TodoItem({ todo, onDeleteTodo, onEditTodo, onToggleCompleted, onViewTod
       </div>
 
       {isEditing && (
-        <section className="todo-edit-panel" onClick={(event) => event.stopPropagation()}>
+        <section
+          className="todo-edit-panel"
+          onClick={(event) => event.stopPropagation()}
+        >
           <label>
             Task
-            <input className="edit-input" type="text" value={text} onChange={(event) => setText(event.target.value)} />
+            <input
+              className="edit-input"
+              type="text"
+              value={text}
+              onChange={(event) => setText(event.target.value)}
+            />
           </label>
           <label>
             Description
-            <textarea className="edit-description-input" value={description} onChange={(event) => setDescription(event.target.value)} />
+            <textarea
+              className="edit-description-input"
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+            />
           </label>
           <label>
             Date
-            <input className="edit-date-input" type="date" value={date} onChange={(event) => setDate(event.target.value)} />
+            <input
+              className="edit-date-input"
+              type="date"
+              value={date}
+              onChange={(event) => setDate(event.target.value)}
+            />
           </label>
           <div className="todo-edit-actions">
-            <button className="save-btn" onClick={saveEdit}>Save</button>
-            <button className="cancel-btn" onClick={cancelEdit}>Cancel</button>
-            <button className="delete-btn" onClick={() => onDeleteTodo(todo.id)} aria-label="Delete todo">
+            <button className="save-btn" onClick={saveEdit}>
+              Save
+            </button>
+            <button className="cancel-btn" onClick={cancelEdit}>
+              Cancel
+            </button>
+            <button
+              className="delete-btn"
+              onClick={() => onDeleteTodo(todo.id)}
+              aria-label="Delete todo"
+            >
               <FaTrash />
             </button>
           </div>

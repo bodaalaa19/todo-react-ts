@@ -11,14 +11,18 @@ function TodoDetails({ todo, onBack }: TodoDetailsProps) {
     return (
       <main className="todo-details">
         <h1>Task not found</h1>
-        <button className="back-btn" onClick={onBack}>Back to tasks</button>
+        <button className="back-btn" onClick={onBack}>
+          Back to tasks
+        </button>
       </main>
     );
   }
 
   return (
     <main className="todo-details">
-      <button className="back-btn" onClick={onBack}>← Back to tasks</button>
+      <button className="back-btn" onClick={onBack}>
+        ← Back to tasks
+      </button>
       <h1>{todo.text}</h1>
       <dl>
         <div>

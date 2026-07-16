@@ -1,64 +1,57 @@
-import React from 'react'
+import React from "react";
 import "./TodoForm.css";
-import { useState } from 'react';
+import { useState } from "react";
 interface TodoFormProps {
   onAddTodo: (text: string, description: string, date: string) => void;
 }
-function TodoForm({onAddTodo}:TodoFormProps) {
-    const [whatTyping,setTyping]=useState('')
-const [description, setDescription] = useState("");
-const [date, setDate] = useState("");
-const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
-  if (!whatTyping.trim()) return;
+function TodoForm({ onAddTodo }: TodoFormProps) {
+  const [whatTyping, setTyping] = useState("");
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!whatTyping.trim()) return;
     onAddTodo(whatTyping, description, date);
-setTyping("");
-setDescription("");
-setDate("");
-  // Later:
-  // Add the todo
-  // Clear the input
-};
+    setTyping("");
+    setDescription("");
+    setDate("");
+    // Later:
+    // Add the todo
+    // Clear the input
+  };
 
   return (
-    
-   <form
-   onSubmit={handleSubmit}
-   className='todo-form'>
+    <form onSubmit={handleSubmit} className="todo-form">
+      <div className="todo-form-row">
+        <input
+          className="todo-input"
+          type="text"
+          placeholder="enter a task"
+          onChange={(e) => setTyping(e.target.value)}
+          value={whatTyping}
+        />
+        <input
+          className="date-input"
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+        />
+        <button className="add-btn">Add</button>
+      </div>
 
-<div className="todo-form-row">
-<input
-className='todo-input'
-type='text'
-placeholder='enter a task'
-onChange={(e)=>setTyping(e.target.value)}
-value={whatTyping}
-/>
-<input
-  className="date-input"
-  type="date"
-  value={date}
-  onChange={(e) => setDate(e.target.value)}
-/>
-<button className='add-btn'
->
-Add
-</button>
-</div>
-
-<label className="description-field">
-  <span>Description <em>(optional)</em></span>
-  <textarea
-    className="description-input"
-    placeholder="Add details, notes, or anything you need to remember…"
-    onChange={(e) => setDescription(e.target.value)}
-    value={description}
-  />
-</label>
-
-   </form >
-   
-  )
+      <label className="description-field">
+        <span>
+          Description <em>(optional)</em>
+        </span>
+        <textarea
+          className="description-input"
+          placeholder="Add details, notes, or anything you need to remember…"
+          onChange={(e) => setDescription(e.target.value)}
+          value={description}
+        />
+      </label>
+    </form>
+  );
 }
 
-export default TodoForm
+export default TodoForm;
