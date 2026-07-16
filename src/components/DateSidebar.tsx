@@ -51,9 +51,7 @@ function DateSidebar({ todos, onSelectDate }: DateSidebarProps) {
       </div>
 
       {Object.entries(groupedDates)
-        .sort(([dateA], [dateB]) => {
-          return new Date(dateA).getTime() - new Date(dateB).getTime();
-        })
+        .sort(([dateA], [dateB]) => dateA.localeCompare(dateB))
         .map(([date, count]) => (
           <div
             className="date-item"
