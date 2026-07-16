@@ -30,8 +30,6 @@ function App() {
       ? todos
       : todos.filter((todo) => todo.date === selectedDate);
   useEffect(() => {
-    console.log("Saving:", todos);
-
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
   const onAddTodo = (text: string, description: string, date: string) => {
@@ -95,11 +93,7 @@ function App() {
       <DateSidebar todos={todos} onSelectDate={setSelectedDate} />
       <button
         className="add-btn"
-        onClick={() => {
-          console.log(isDark);
-
-          setIsDark(!isDark);
-        }}
+        onClick={() => setIsDark(!isDark)}
       >
         {isDark ? "☀️ Light Mode" : "🌙 Dark Mode"}
       </button>

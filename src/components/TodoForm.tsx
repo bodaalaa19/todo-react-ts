@@ -5,19 +5,16 @@ interface TodoFormProps {
   onAddTodo: (text: string, description: string, date: string) => void;
 }
 function TodoForm({ onAddTodo }: TodoFormProps) {
-  const [whatTyping, setTyping] = useState("");
+  const [taskText, setTaskText] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!whatTyping.trim()) return;
-    onAddTodo(whatTyping, description, date);
-    setTyping("");
+    if (!taskText.trim()) return;
+    onAddTodo(taskText, description, date);
+    setTaskText("");
     setDescription("");
     setDate("");
-    // Later:
-    // Add the todo
-    // Clear the input
   };
 
   return (
@@ -27,8 +24,8 @@ function TodoForm({ onAddTodo }: TodoFormProps) {
           className="todo-input"
           type="text"
           placeholder="enter a task"
-          onChange={(e) => setTyping(e.target.value)}
-          value={whatTyping}
+          onChange={(e) => setTaskText(e.target.value)}
+          value={taskText}
         />
         <input
           className="date-input"
