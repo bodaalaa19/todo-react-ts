@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import type { Todo } from "../types/todo";
 import "./TodoItem.css";
@@ -16,7 +16,7 @@ interface TodoItemProps {
   onViewTodo: (id: string) => void;
 }
 
-function TodoItem({
+const TodoItem = memo(function TodoItem({
   todo,
   onDeleteTodo,
   onEditTodo,
@@ -119,6 +119,6 @@ function TodoItem({
       )}
     </article>
   );
-}
+});
 
 export default TodoItem;

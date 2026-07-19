@@ -2,7 +2,7 @@ import React from "react";
 
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
-import { useState, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { Todo } from "./types/todo";
 import DateSidebar from "./components/DateSidebar";
 import TodoDetails from "./components/TodoDetails";
@@ -33,10 +33,10 @@ function App() {
 
     setTodos((prevTodos) => [...prevTodos, newTodo]);
   };
-  const onDeleteTodo = (id: string) => {
+  const onDeleteTodo = useCallback((id: string) => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
-  };
-  const onEditTodo = (
+  }, []);
+  const onEditTodo = useCallback((
     id: string,
     text: string,
     description: string,
@@ -47,14 +47,18 @@ function App() {
         todo.id === id ? { ...todo, text, description, date } : todo,
       ),
     );
-  };
-  const onToggleCompleted = (id: string) => {
+  }, []);
+  const onToggleCompleted = useCallback((id: string) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
         todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo,
       ),
     );
-  };
+  }, []);
+  const onViewTodo = useCallback(
+    (id: string) => navigate(`/tasks/${id}`),
+    [navigate],
+  );
   const [isDark, setIsDark] = useState<boolean>(() => {
     const storedTheme = localStorage.getItem("isDark");
     return storedTheme ? JSON.parse(storedTheme) : false;
@@ -94,7 +98,7 @@ function App() {
         <TodoList
           onDeleteTodo={onDeleteTodo}
           onEditTodo={onEditTodo}
-          onViewTodo={(id) => navigate(`/tasks/${id}`)}
+          onViewTodo={onViewTodo}
           todos={filteredTodos}
           onToggleCompleted={onToggleCompleted}
         />
