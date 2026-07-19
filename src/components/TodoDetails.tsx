@@ -1,4 +1,5 @@
 import type { Todo } from "../types/todo";
+import TodoNotFound from "./TodoNotFound";
 import "./TodoDetails.css";
 
 interface TodoDetailsProps {
@@ -8,14 +9,7 @@ interface TodoDetailsProps {
 
 function TodoDetails({ todo, onBack }: TodoDetailsProps) {
   if (!todo) {
-    return (
-      <main className="todo-details">
-        <h1>Task not found</h1>
-        <button className="back-btn" onClick={onBack}>
-          Back to tasks
-        </button>
-      </main>
-    );
+    return <TodoNotFound onBack={onBack} />;
   }
 
   return (
