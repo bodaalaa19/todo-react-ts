@@ -3,7 +3,6 @@
   background: var(--item);
   border: 1px solid #b8d2da;
   border-radius: 8px;
-  cursor: pointer;
   overflow: hidden;
   transition: background 0.3s ease, box-shadow 0.2s ease;
 }
@@ -28,11 +27,23 @@
   min-width: 0;
 }
 
-.todo-left input[type="checkbox"] {
+.todo-summary > input[type="checkbox"] {
   width: 18px;
   height: 18px;
   flex: 0 0 auto;
   cursor: pointer;
+}
+
+.todo-view-btn {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
 }
 
 .todo-text {

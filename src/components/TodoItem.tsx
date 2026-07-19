@@ -42,30 +42,30 @@ function TodoItem({
   };
 
   return (
-    <article
-      className={`todo-item ${isEditing ? "is-expanded" : ""}`}
-      onClick={() => !isEditing && onViewTodo(todo.id)}
-    >
+    <article className={`todo-item ${isEditing ? "is-expanded" : ""}`}>
       <div className="todo-summary">
-        <div className="todo-left">
-          <input
-            type="checkbox"
-            checked={todo.isCompleted}
-            onChange={() => onToggleCompleted(todo.id)}
-            onClick={(event) => event.stopPropagation()}
-          />
-          <p className={`todo-text ${todo.isCompleted ? "completed" : ""}`}>
-            {todo.text}
-          </p>
-          <p className="todo-date">{todo.date || "No date"}</p>
-        </div>
+        <input
+          type="checkbox"
+          checked={todo.isCompleted}
+          onChange={() => onToggleCompleted(todo.id)}
+          aria-label={`Mark ${todo.text} as ${todo.isCompleted ? "incomplete" : "complete"}`}
+        />
+        <button
+          className="todo-view-btn"
+          onClick={() => onViewTodo(todo.id)}
+          aria-label={`View details for ${todo.text}`}
+        >
+          <div className="todo-left">
+            <p className={`todo-text ${todo.isCompleted ? "completed" : ""}`}>
+              {todo.text}
+            </p>
+            <p className="todo-date">{todo.date || "No date"}</p>
+          </div>
+        </button>
 
         <button
           className="edit-btn"
-          onClick={(event) => {
-            event.stopPropagation();
-            setIsEditing(true);
-          }}
+          onClick={() => setIsEditing(true)}
           aria-label="Edit todo"
         >
           <FaEdit />
@@ -73,10 +73,7 @@ function TodoItem({
       </div>
 
       {isEditing && (
-        <section
-          className="todo-edit-panel"
-          onClick={(event) => event.stopPropagation()}
-        >
+        <section className="todo-edit-panel">
           <label>
             Task
             <input
