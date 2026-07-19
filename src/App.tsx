@@ -11,7 +11,14 @@ import "./App.css";
 function App() {
   const [todos, setTodos] = useState<Todo[]>(() => {
     const storedTodos = localStorage.getItem("todos");
-    return storedTodos ? JSON.parse(storedTodos) : [];
+    if (!storedTodos) return [];
+
+    try {
+      const parsedTodos: unknown = JSON.parse(storedTodos);
+      return Array.isArray(parsedTodos) ? parsedTodos : [];
+    } catch {
+      return [];
+    }
   });
   const { route, navigate } = useCustomRouter();
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
@@ -25,7 +32,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
-  const onAddTodo = (text: string, description: string, date: string) => {
+  const onAddTodo = useCallback((text: string, description: string, date: string) => {
     const newTodo: Todo = {
       id: crypto.randomUUID(),
       text: text,
@@ -35,7 +42,7 @@ function App() {
     };
 
     setTodos((prevTodos) => [...prevTodos, newTodo]);
-  };
+  }, []);
   const onDeleteTodo = useCallback((id: string) => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   }, []);
@@ -64,7 +71,14 @@ function App() {
   );
   const [isDark, setIsDark] = useState<boolean>(() => {
     const storedTheme = localStorage.getItem("isDark");
-    return storedTheme ? JSON.parse(storedTheme) : false;
+    if (!storedTheme) return false;
+
+    try {
+      const parsedTheme: unknown = JSON.parse(storedTheme);
+      return typeof parsedTheme === "boolean" ? parsedTheme : false;
+    } catch {
+      return false;
+    }
   });
 
   useEffect(() => {
@@ -85,10 +99,9 @@ function App() {
 
   return (
     <div className={`app ${isDark ? "dark" : "light"}`}>
-      {" "}
       <DateSidebar todos={todos} onSelectDate={setSelectedDate} />
       <button
-        className="add-btn"
+        className="theme-btn"
         onClick={() => setIsDark(!isDark)}
       >
         {isDark ? "☀️ Light Mode" : "🌙 Dark Mode"}

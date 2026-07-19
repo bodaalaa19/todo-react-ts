@@ -12,10 +12,9 @@ function formatDate(dateString: string) {
     return "📅 No date";
   }
 
-const [year, month, day] =
-    dateString.split("-").map(Number);
+  const [year, month, day] = dateString.split("-").map(Number);
 
-const date = new Date(year, month - 1, day);
+  const date = new Date(year, month - 1, day);
   const today = new Date();
   const tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);
@@ -63,15 +62,15 @@ const DateSidebar = memo(function DateSidebar({
       </div>
 
       {sortedGroupedDates.map(([date, count]) => (
-          <div
-            className="date-item"
-            key={date}
-            onClick={() => onSelectDate(date)}
-          >
-            <span>{formatDate(date)}</span>
-            <span>({count}) ▶</span>
-          </div>
-        ))}
+        <div
+          className="date-item"
+          key={date}
+          onClick={() => onSelectDate(date)}
+        >
+          <span>{formatDate(date)}</span>
+          <span>({count}) ▶</span>
+        </div>
+      ))}
     </div>
   );
 });

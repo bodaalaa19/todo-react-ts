@@ -4,7 +4,9 @@
   border: 1px solid #b8d2da;
   border-radius: 8px;
   overflow: hidden;
-  transition: background 0.3s ease, box-shadow 0.2s ease;
+  transition:
+    background 0.3s ease,
+    box-shadow 0.2s ease;
 }
 
 .todo-item:hover {
@@ -161,8 +163,14 @@
 }
 
 @keyframes expand-panel {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 520px) {

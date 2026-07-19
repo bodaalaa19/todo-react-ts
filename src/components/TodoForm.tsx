@@ -14,11 +14,11 @@ function TodoForm({ onAddTodo }: TodoFormProps) {
     onAddTodo(taskText, description, date);
     resetInputs();
   };
-const resetInputs=()=>{
-setTaskText("");
+  const resetInputs = () => {
+    setTaskText("");
     setDescription("");
     setDate("");
-}
+  };
   return (
     <form onSubmit={handleSubmit} className="todo-form">
       <div className="todo-form-row">
