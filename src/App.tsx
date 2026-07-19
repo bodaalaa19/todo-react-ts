@@ -6,24 +6,14 @@ import { useState, useEffect } from "react";
 import type { Todo } from "./types/todo";
 import DateSidebar from "./components/DateSidebar";
 import TodoDetails from "./components/TodoDetails";
+import { useCustomRouter } from "./hooks/useCustomRouter";
 import "./App.css";
 function App() {
   const [todos, setTodos] = useState<Todo[]>(() => {
     const storedTodos = localStorage.getItem("todos");
     return storedTodos ? JSON.parse(storedTodos) : [];
   });
-  const [pathname, setPathname] = useState(() => window.location.pathname);
-
-  useEffect(() => {
-    const handlePopState = () => setPathname(window.location.pathname);
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
-  }, []);
-
-  const navigate = (path: string) => {
-    window.history.pushState({}, "", path);
-    setPathname(path);
-  };
+  const { route, navigate } = useCustomRouter();
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const filteredTodos =
     selectedDate === null
@@ -74,12 +64,11 @@ function App() {
     localStorage.setItem("isDark", JSON.stringify(isDark));
   }, [isDark]);
 
-  const taskId = pathname.match(/^\/tasks\/([^/]+)$/)?.[1];
-  const selectedTodo = taskId
-    ? todos.find((todo) => todo.id === taskId)
+  const selectedTodo = route.name === "task-details"
+    ? todos.find((todo) => todo.id === route.taskId)
     : undefined;
 
-  if (taskId) {
+  if (route.name === "task-details") {
     return (
       <div className={`app ${isDark ? "dark" : "light"}`}>
         <TodoDetails todo={selectedTodo} onBack={() => navigate("/")} />
