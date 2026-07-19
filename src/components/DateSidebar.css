@@ -12,8 +12,10 @@
   border-radius: 14px;
   padding: 18px;
 
-  box-shadow: 0 4px 12px rgba(0,0,0,.1);
-  transition: background 0.3s ease, color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
 .date-sidebar h3 {
@@ -40,7 +42,9 @@
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .date-item:hover {
@@ -63,9 +67,9 @@
 }
 
 .date-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 @media (max-width: 980px) {

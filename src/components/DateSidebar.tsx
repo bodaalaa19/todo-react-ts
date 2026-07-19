@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import type { Todo } from "../types/todo";
 import "./DateSidebar.css";
 
@@ -33,13 +34,19 @@ function formatDate(dateString: string) {
 }
 
 function DateSidebar({ todos, onSelectDate }: DateSidebarProps) {
-  const groupedDates = todos.reduce(
-    (acc, todo) => {
-      acc[todo.date] = (acc[todo.date] || 0) + 1;
-      return acc;
-    },
-    {} as Record<string, number>,
-  );
+  const sortedGroupedDates = useMemo(() => {
+    const groupedDates = todos.reduce(
+      (acc, todo) => {
+        acc[todo.date] = (acc[todo.date] || 0) + 1;
+        return acc;
+      },
+      {} as Record<string, number>,
+    );
+
+    return Object.entries(groupedDates).sort(([dateA], [dateB]) =>
+      dateA.localeCompare(dateB),
+    );
+  }, [todos]);
 
   return (
     <div className="date-sidebar">
@@ -50,9 +57,7 @@ function DateSidebar({ todos, onSelectDate }: DateSidebarProps) {
         <span>📋 All Tasks</span>
       </div>
 
-      {Object.entries(groupedDates)
-        .sort(([dateA], [dateB]) => dateA.localeCompare(dateB))
-        .map(([date, count]) => (
+      {sortedGroupedDates.map(([date, count]) => (
           <div
             className="date-item"
             key={date}
