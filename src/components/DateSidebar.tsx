@@ -12,8 +12,10 @@ function formatDate(dateString: string) {
     return "📅 No date";
   }
 
-  const date = new Date(dateString);
+const [year, month, day] =
+    dateString.split("-").map(Number);
 
+const date = new Date(year, month - 1, day);
   const today = new Date();
   const tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);
