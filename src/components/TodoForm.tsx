@@ -12,11 +12,13 @@ function TodoForm({ onAddTodo }: TodoFormProps) {
     e.preventDefault();
     if (!taskText.trim()) return;
     onAddTodo(taskText, description, date);
-    setTaskText("");
+    resetInputs();
+  };
+const resetInputs=()=>{
+setTaskText("");
     setDescription("");
     setDate("");
-  };
-
+}
   return (
     <form onSubmit={handleSubmit} className="todo-form">
       <div className="todo-form-row">
