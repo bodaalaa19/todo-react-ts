@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { memo, useMemo } from "react";
 import type { Todo } from "../types/todo";
 import "./DateSidebar.css";
 
@@ -35,7 +35,10 @@ const date = new Date(year, month - 1, day);
   })}`;
 }
 
-function DateSidebar({ todos, onSelectDate }: DateSidebarProps) {
+const DateSidebar = memo(function DateSidebar({
+  todos,
+  onSelectDate,
+}: DateSidebarProps) {
   const sortedGroupedDates = useMemo(() => {
     const groupedDates = todos.reduce(
       (acc, todo) => {
@@ -71,6 +74,6 @@ function DateSidebar({ todos, onSelectDate }: DateSidebarProps) {
         ))}
     </div>
   );
-}
+});
 
 export default DateSidebar;

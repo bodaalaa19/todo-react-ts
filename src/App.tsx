@@ -2,7 +2,7 @@ import React from "react";
 
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Todo } from "./types/todo";
 import DateSidebar from "./components/DateSidebar";
 import TodoDetails from "./components/TodoDetails";
@@ -15,10 +15,13 @@ function App() {
   });
   const { route, navigate } = useCustomRouter();
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
-  const filteredTodos =
-    selectedDate === null
-      ? todos
-      : todos.filter((todo) => todo.date === selectedDate);
+  const filteredTodos = useMemo(
+    () =>
+      selectedDate === null
+        ? todos
+        : todos.filter((todo) => todo.date === selectedDate),
+    [todos, selectedDate],
+  );
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);

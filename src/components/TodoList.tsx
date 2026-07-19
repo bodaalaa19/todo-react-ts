@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 import TodoItem from "./TodoItem";
 import type { Todo } from "../types/todo";
 
@@ -15,7 +15,7 @@ interface TodoListProps {
   onViewTodo: (id: string) => void;
 }
 
-function TodoList({
+const TodoList = memo(function TodoList({
   todos,
   onDeleteTodo,
   onEditTodo,
@@ -36,6 +36,6 @@ function TodoList({
       ))}
     </div>
   );
-}
+});
 
 export default TodoList;
