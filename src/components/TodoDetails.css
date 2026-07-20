@@ -1,0 +1,36 @@
+.todo-details {
+  width: min(600px, calc(100% - 40px));
+  margin: 40px auto;
+  padding: 28px;
+  border-radius: 12px;
+  background: var(--item);
+  color: var(--text);
+}
+
+.todo-details h1 {
+  margin: 24px 0;
+}
+
+.todo-details dl {
+  display: grid;
+  gap: 20px;
+}
+
+.todo-details dt {
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.todo-details dd {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.back-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  background: var(--button);
+  color: white;
+  cursor: pointer;
+}
